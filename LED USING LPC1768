@@ -1,0 +1,20 @@
+#include &lt;lpc17xx.h&gt;
+void delay(unsigned int ms)
+{
+unsigned int i,j;
+for(i=0;i&lt;ms;i++)
+for(j=0;j&lt;20000;j++);
+}
+int main()
+{
+SystemInit();
+LPC_GPIO2-&gt;FIODIR = 0x00000000;
+LPC_GPIO2-&gt;FIODIR = 0xffffffff;
+while(1)
+{
+LPC_GPIO2-&gt;FIOSET = 0xffffffff;
+delay (100);
+LPC_GPIO2-&gt;FIOCLR = 0xffffffff;
+delay (100);
+}
+}
